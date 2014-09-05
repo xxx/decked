@@ -1,0 +1,16 @@
+MANIFEST
+LICENSE
+README
+Todo
+Changes
+decked
+decked.glade
+t/01_use.t
+Makefile.PL
+lib/Decked/Card.pm
+lib/Decked/Cardbase.pm
+lib/Decked/Set.pm
+lib/Decked/Setbase.pm
+lib/Decked/GUI.pm
+lib/Decked/GUIUI.pm
+lib/Decked/Stats.pm

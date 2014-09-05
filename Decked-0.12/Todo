@@ -1,0 +1,9 @@
+implement filters
+cmdline args
+security codes
+status bar?
+
+auto-update stats window
+does the deck need to be saved - for switching modes, quitting, new deck
+	- on hold. annoying issues with continuing where we left off after
+		creating the dialog and passing control to it.

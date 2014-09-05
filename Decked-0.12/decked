@@ -1,0 +1,209 @@
+#!/usr/bin/perl
+require 5.6.0;
+use strict;
+use warnings;
+use Decked::GUI;
+
+$|++;
+
+mainwin->app_run;
+
+__END__
+
+=head1 INTRODUCTION
+
+Decked is a deck editor/sealed deck generator for Magic: The Gathering.
+It features include filters and support for limited card pools, making
+it useful for building a sealed or draft deck. It was intended to fill
+in a missing piece of the non-Windows online Magic experience.
+
+This software is intended to supplement Mindless Automaton, by
+Salvatore Valente. It is available at http://mindless.sourceforge.net
+
+=head1 NOTICE
+
+This software has been all but abandoned. I will add bugfixes for what
+is already implemented if requested, but have no plans to finish the
+functionality of this version of the software. The next version will
+have a GUI hand-coded to use Gtk2. The Gtk1 Perl bindings are rather
+poor, and at least one serious bug in them will prevent filters from being
+implemented. The fact that Glade was used doesn't help matters.
+
+Notable missing features include:
+
+=over 4
+
+=item * Filters (Just try clicking on the Filter or Reset buttons.)
+
+=item * Notification of the user if a deck is unsaved
+
+=item * Apprentice security code generation
+
+=item * Automatic updates of the stats window
+
+=item * Command line switches
+
+=back
+
+=head1 DISCLAIMER
+
+Magic: The Gathering is the trademark of Wizards of the Coast.
+
+I am not affiliated with Wizards of the Coast in any way.
+
+This software is NOT an official product of Wizards of the Coast, nor is
+it endorsed by them in any way.
+
+While not explicit anywhere I can find, Apprentice is likely a trademark
+of Dragonstar Studios. This software makes use of several databases that
+were originally intended to be used with Apprentice. Apprentice is
+available for Windows at http://www.dragonstudios.com/apprentice
+
+=head1 USAGE
+
+=head2 Useful Actions
+
+In any mode, you can right click on a card to view it in a window. Artwork is
+unimplemented at this time, but planned in the future.
+
+You can also left click on the column titles in the card pool to sort
+the current pool by that column's information. This is slightly buggy
+at this time, and is one of the reasons the GUI is getting ported to
+Gtk2 ASAP.
+
+=head2 Menu Options
+
+=over 4
+
+=item * File->New->Deck with Unlimited Cardpool
+
+If in unlimited mode (for information on different modes, see 'Modes of Use'
+below,) blanks the deck and sideboard listings. If in limited mode, blanks
+the deck and sideboard listings, and also loads the master database into
+the card pool, turning off limited mode.
+
+=item * File->New->Deck with this Cardpool
+
+If in unlimited mode, it doesn't work correctly at this time. heh. If in
+limited mode, moves all the cards in the deck back into the sideboard,
+and removes all the coloring from the card pool list.
+
+=item * File->Import->Deck
+
+If in unlimited mode, opens a dialog that allows the user to select an
+Apprentice format deck file, which will be opened into the deck and
+sideboard lists.
+If in limited mode, does the same as for unlimited mode, except that the
+card pool list will be re-loaded with the master database, turning off
+limited mode.
+
+=item * File->Import->Card Pool
+
+If in unlimited mode, will enable Limited mode.
+In both modes, will load an Apprentice format file into the editor, but
+all cards will be put into the sideboard, regardless of what the deck
+listing says.
+
+=item * File->Export->Deck
+
+Export the current deck out to an Apprentice format text file. Sideboard
+cards are correctly labeled with 'SB:'.
+
+=item * File->Export->Card Pool
+
+Export the current card pool out to an Apprentice format text file, but all
+cards are labeled with 'SB:' to signify that it's a card pool.
+
+=item * Generate Sealed Deck
+
+Open a window to allow you to generate sealed decks and boosters. It uses the
+Distro.dat file to determine how many of each commonality should be
+generated for each starter/booster. Choose the set you want to generate
+in its respective selectbox, then click the '-->' button to add that to
+the list. The '<--' button is to remove items that you decide not to
+generate after all. Once you have your lists set, click the generate button.
+This will generate the deck and load it into the deck editor. If you were
+in unlimited mode, this will switch you to limited mode.
+
+=item * Quit
+
+Should be obvious. You won't get prompted if you want to save your deck.
+
+=back
+
+=head2 Modes of Use
+
+Decked offers the user two separate modes. One, called I<Unlimited Mode>,
+offers the entire cardpool for use in constructing a deck. The other,
+I<Limited Mode>, is the opposite. It's for building a deck out of a limited
+cardpool. This is useful, for example, with the sealed deck generator.
+Specifics of each mode are explained below.
+
+=head2 Unlimited Mode
+
+In unlimited mode, the card pool is just that: unlimited. You can add
+as many of a particular card to a deck as you wish.
+
+Double clicking a card in the card pool will add a single copy of that
+card to your deck.
+
+Clicking the 'in deck' button will have the same effect, but will move
+a copy of every card currently selected in the card pool list.
+
+Clicking the 'out deck' button will remove one copy of all cards selected
+in the deck list. The 'in sb' and 'out sb' buttons work similarly.
+
+The '-->' and '<--' buttons work in a similar fashion, but move one copy
+of the selected cards back and forth between the deck and sideboard (i.e.
+the '-->' button moves one copy of all cards selected in the deck list
+to the sideboard, and vice versa for the '<--' button.
+
+The 'Stats' button allows opens a window containing some statistics about
+the deck that's currently in the deck list. It does not, currently,
+automatically update. Just click the button again. You don't need to close
+the window.
+
+The 'Add Lands' button, not very useful in unlimited mode, allows you to
+add basic lands directly to your deck.
+
+=head2 Limited Mode
+
+Limited mode is essentially just functionality that I wanted when I was
+using a deck editor to build a limited deck. When limited mode is initialized,
+all cards added to that initial card pool begin in the sideboard. You then
+add the cards you want into your deck.
+
+Double clicking a card in the card pool list will move a single copy of that
+card to your deck from your sideboard. When a card is added to the deck in
+limited mode, its background will turn yellow in the card pool list. When
+all copies of that card in the card pool are added to the deck, the letters
+will grey out as well. 
+
+The 'in deck', 'out deck', 'in sb', and 'out sb' buttons are disabled in
+limited mode.
+
+The '-->', '<--', 'Stats', and 'Add Lands' buttons work as they do in
+unlimited mode. The '-->' and '<--' buttons affect the card pool list as
+they do when you double click cards in that list.
+
+=head1 AUTHOR
+
+Michael Dungan <mpd@yclan.net>
+
+=head1 WEBSITE
+
+http://mrnutty.yclan.net/~mpd/decked
+
+=head1 UPDATES
+
+Updated database files can be acquired at http://www.e-league.com , http://www.dragonstudios.com/apprentice , or at this software's distribution site.
+
+=head1 COPYRIGHT
+
+Copyright (c) 2003 Michael Dungan All rights reserved.
+
+This file is free software. It can be modified and/or redistributed under
+the same terms as Perl itself. Please see the LICENSE file included in the
+distribution.
+
+=cut

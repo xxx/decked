@@ -1,0 +1,67 @@
+NOTE: I am finished with this software. Filters were not implemented because
+the current GUI framework makes them overly tedious. The next version will
+have a re-written-by-hand GUI using Gtk2. Feel free to hack on this, and
+I will apply bugfixes or patches, should others send them in.
+
+The .glade file is included for anyone who cares.
+
+Let's get back to the program.
+
+Decked - A deck editor/sealed deck generator for Magic: The Gathering written
+    in Perl/GTK.
+
+URL: http://mrnutty.yclan.net/~mpd/decked
+
+This software was intended to supplement Sal Valente's Mindless Automaton
+(available at http://mindless.sourceforge.net)
+
+DISCLAIMER
+
+Magic: The Gathering is a trademark of Wizards of the Coast (and probably
+by extension, Hasbro.) I do not own it. I am not involved with either
+company in any fashion. I'm just a long-time player looking to fill in
+a missing piece.
+
+This software is NOT an official Wizards of the Coast product, NOR is it
+endorsed by or affiliated with Wizards of the Coast whatsoever.
+
+INSTALLATION
+
+Installation is the same as most other Perl modules:
+
+perl Makefile.PL
+make
+make test # optional, but highly recommended.
+make install
+
+-perldoc decked- at a command prompt will show you the manual after
+installation.
+
+Before running the program, however, there is some more setup required.
+
+Perl 5.6.0 or higher as well as several modules are required. -make test-
+will let you know what you have and what you need.
+
+Some files need to be present. These files are present in E-League's Oracle
+patch at http://www.e-league.com/index.php?function=download&file=oraclepatch
+or from the main Decked distribution site at
+http://mrnutty.yclan.net/~mpd/decked
+
+The needed files are Distro.dat, Expan.dat, and cardinfo.dat. Put them
+somewhere safe, then set the following environment variables to point to
+their respective files:
+
+CARDINFO_DAT => cardinfo.dat
+You should have this set already if you use Mindless Automaton.
+
+DISTRO_DAT => Distro.dat
+EXPAN_DAT => Expan.dat
+These are required for the sealed deck generator.
+
+Setting environment variables is shell-dependent and if you're installing
+Perl modules, you should have a pretty good grasp on them at this point.
+
+At this point, you should be golden. Run -decked- at a command prompt, and
+run toward victory and mega-super fun.
+
+- mpd 9/29/2003
